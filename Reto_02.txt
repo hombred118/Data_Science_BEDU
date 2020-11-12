@@ -1,0 +1,84 @@
+##########Reto_1##########
+
+########## 1 ##########
+##My Query
+{name: "Greg Powell"}
+
+
+# Requires the PyMongo package.
+# https://api.mongodb.com/python/current
+
+client = MongoClient('mongodb+srv://dambrz:qwerty1234@cluster0.hf7t9.mongodb.net/test?authSource=admin&replicaSet=atlas-qehkfh-shard-0&connectTimeoutMS=600000&socketTimeoutMS=6000000&readPreference=primary&appname=MongoDB%20Compass&ssl=true')
+filter={
+    'name': 'Greg Powell'
+}
+
+result = client['sample_mflix']['comments'].find(
+  filter=filter
+)
+
+########## 2 ##########
+##My Query
+{$or: [{name: "Greg Powell"}, {name: "Mercedes Tyler"}]}
+
+
+# Requires the PyMongo package.
+# https://api.mongodb.com/python/current
+
+client = MongoClient('mongodb+srv://dambrz:qwerty1234@cluster0.hf7t9.mongodb.net/test?authSource=admin&replicaSet=atlas-qehkfh-shard-0&connectTimeoutMS=600000&socketTimeoutMS=6000000&readPreference=primary&appname=MongoDB%20Compass&ssl=true')
+filter={
+    '$or': [
+        {
+            'name': 'Greg Powell'
+        }, {
+            'name': 'Mercedes Tyler'
+        }
+    ]
+}
+
+result = client['sample_mflix']['comments'].find(
+  filter=filter
+)
+
+########## 3 ##########
+# Requires the PyMongo package.
+# https://api.mongodb.com/python/current
+
+client = MongoClient('mongodb+srv://dambrz:qwerty1234@cluster0.hf7t9.mongodb.net/test?authSource=admin&replicaSet=atlas-qehkfh-shard-0&connectTimeoutMS=600000&socketTimeoutMS=6000000&readPreference=primary&appname=MongoDB%20Compass&ssl=true')
+filter={}
+project={
+    'num_mflix_comments': 1
+}
+sort=list({
+    'num_mflix_comments': -1
+}.items())
+limit=1
+
+result = client['sample_mflix']['movies'].find(
+  filter=filter,
+  projection=project,
+  sort=sort,
+  limit=limit
+)
+
+
+########## 4 ##########
+# Requires the PyMongo package.
+# https://api.mongodb.com/python/current
+
+client = MongoClient('mongodb+srv://dambrz:qwerty1234@cluster0.hf7t9.mongodb.net/test?authSource=admin&replicaSet=atlas-qehkfh-shard-0&connectTimeoutMS=600000&socketTimeoutMS=6000000&readPreference=primary&appname=MongoDB%20Compass&ssl=true')
+filter={}
+project={
+    'title': 1
+}
+sort=list({
+    'num_mflix_comments': -1
+}.items())
+limit=5
+
+result = client['sample_mflix']['movies'].find(
+  filter=filter,
+  projection=project,
+  sort=sort,
+  limit=limit
+)
